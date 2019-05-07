@@ -1,0 +1,77 @@
+<!-- 1. Estructura de un documento HTML -->
+<!DOCTYPE html>
+<html lang="en">
+    <!-- La etiqueta <head></head> contiene metadata del documento 
+    HTML metadata is data about the HTML document. Metadata is not displayed.
+    Metadata typically define the document title, character set, styles, links, scripts, and other meta information. -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Provee compatibilidad con internet explorer -->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Clase 1</title>
+        <!-- Linkea una hoja de estilos -->
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <!-- Cuerpo del documento -->
+    <body>
+        <!-- Headers - cabeceras - titulos -->
+        <h1>Titulo h1</h1>
+        <h2>Titulo h2</h2>
+        <h3 class="title">Titulo h3</h3>
+        <h6 class="title">Titulo h6</h6>
+        
+        <!-- parrafo -->
+        <p>Parrafo</p>
+        
+        <!-- anchor: ancla -->
+        <a href="">Link</a>
+        
+        <!-- break row: salto de linea -->
+        <br/>
+       
+        <!-- Boton -->
+        <button >Click!</button> <br />
+        
+
+        <!-- imagen -->
+        <img src="" alt="una imagen de muestra">
+        
+        <!-- tablas -->
+        <table style="width:100%">
+            <!-- tr: table row -->
+            <tr>
+                <!-- th: table heading -->
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <!-- td: table data / cell -->
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+        </table>
+
+        <!-- div: division o section -->
+        <div id="caja"> Div: cosa  </div>
+        
+        <!-- Formulario -->
+        <form action="/action_page.php">
+            First name:<br>
+            <input type="text" name="firstname" value="Sebastian">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="Segura">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <script src="index.js"></script>
+    </body>
+</html>

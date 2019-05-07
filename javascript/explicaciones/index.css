@@ -1,0 +1,43 @@
+body{
+    background: lightblue;
+}
+
+h1{
+    color: white;
+}
+
+/* SELECTORES */
+
+/* elemento */
+    h2{
+        font-family: sans-serif;
+    }
+/* id */
+    #caja{
+        width: 100px;
+        height: 100px;
+        background-color: blueviolet;
+    }
+/* Clase */
+    .title{
+        color: red;
+        font-size: 2em;
+    }
+
+/* PSEUDO CLASE */
+
+    #caja:hover{
+        cursor: pointer;
+    }
+
+/* LUEGO DE ENSEÑAR JAVASCRIPT, AL FINAL, AGREGAMOS ESTA CLASE PARA MOSTRAR COMO SE ACCEDE AL DOM Y SE CAMBIAN ATRIBUTOS: */
+
+.animateBox{
+    animation: myFirstAnimation 1s infinite ease-in-out;
+}
+
+@keyframes myFirstAnimation {
+    10%{ transform: scale(1.3) }
+    50%{ transform: scale(0.8) }
+    90%{ transform: scale(1) }
+}
