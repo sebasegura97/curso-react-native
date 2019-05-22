@@ -1,0 +1,26 @@
+.tab-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tab-link{
+    text-decoration: none;
+}
+.tab-icon{
+    color: #8E8E93;
+}
+.tab-label{
+    color: #8E8E93;
+    margin-top: 5px;
+    
+}
+.navigation-container{
+    position: fixed;
+    bottom: 0vh;
+    background-color: #FAFAFA;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}

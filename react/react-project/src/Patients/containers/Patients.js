@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PatientList from '../components/PatientsList'
-import FAB from '../components/FAB';
-import Header from '../components/Header';
+import Header from '../../SharedComponents/Header/Header'
 
 const exampleList = [
     {
@@ -54,7 +53,6 @@ class Patients extends Component {
                     list={this.state.patientList}
                     filter={this.onFilter}
                     />
-                <FAB />
             </div>
         )
     }
