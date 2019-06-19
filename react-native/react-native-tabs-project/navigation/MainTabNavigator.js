@@ -4,8 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import Calendar from '../screens/Calendar';
-import LinksScreen from '../screens/LinksScreen';
+import Patients from '../screens/Patients';
 import SettingsScreen from '../screens/SettingsScreen';
+import AddPatient from '../screens/AddPatient'
 
 const CalendarStack = createStackNavigator({
   Calendar: Calendar,
@@ -25,11 +26,12 @@ CalendarStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const PatientsStack = createStackNavigator({
+  Patients: Patients,
+  AddPatient: AddPatient
 });
 
-LinksStack.navigationOptions = {
+PatientsStack.navigationOptions = {
   tabBarLabel: 'Pacientes',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -55,6 +57,6 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   CalendarStack,
-  LinksStack,
+  PatientsStack,
   SettingsStack,
 });
