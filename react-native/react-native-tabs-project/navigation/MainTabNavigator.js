@@ -4,9 +4,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import Calendar from '../screens/Calendar';
-import Patients from '../screens/Patients';
 import SettingsScreen from '../screens/SettingsScreen';
-import AddPatient from '../screens/AddPatient'
+import Patients from '../screens/Patients/index';
+import AddPatient from '../screens/Patients/AddPatient'
+import Patient from '../screens/Patients/Patient'
+import NewEntry from '../screens/Patients/NewEntry';
+import AddDate from '../screens/Patients/AddDate';
+import AddHistory from '../screens/Patients/AddHistory';
 
 const CalendarStack = createStackNavigator({
   Calendar: Calendar,
@@ -28,7 +32,11 @@ CalendarStack.navigationOptions = {
 
 const PatientsStack = createStackNavigator({
   Patients: Patients,
-  AddPatient: AddPatient
+  AddPatient: { screen: AddPatient, path: 'patients/add' },
+  Patient: { screen: Patient, path: 'patients/patient'},
+  NewEntry: { screen: NewEntry, path: 'patients/newEntry' },
+  AddDate: { screen: AddDate, path: 'patients/addDate' },
+  AddHistory: { screen: AddHistory, path: 'patients/addHiAddHistory' },
 });
 
 PatientsStack.navigationOptions = {

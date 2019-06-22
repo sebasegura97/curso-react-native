@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native';
+import { FlatList, TouchableHighlight } from 'react-native';
 import { Container, Fab } from 'native-base'
+import { firestore } from '../../firebase/firebase'
 
 const data = [
   {
@@ -25,29 +26,49 @@ const data = [
 ]
 
 const PatientItem = (props) => {
+  let { name, lastname } = props.item
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemTitle}> {props.item.name} </Text>
-      <Text style={styles.itemDescription}>
-        <Text style={styles.itemDate}> {props.item.date} </Text>
-        {props.item.description}
-      </Text>
-    </View>
+    <TouchableHighlight onPress={props.onPress}>
+      <View style={styles.itemContainer}>
+        <Text style={styles.itemTitle}> {`${name} ${lastname}`}  </Text>
+        <Text style={styles.itemDescription}>
+          <Text style={styles.itemDate}> {props.item.date} </Text>
+          {props.item.diagnosis}
+        </Text>
+      </View>
+    </TouchableHighlight>
   )
 }
 
 export default class Patients extends React.Component {
+  state = {
+    patients: [],
+  }
+  async componentDidMount(){
+    let collection = await firestore.collection('patients').get();
+    let patients = [];
+    collection.docs.forEach(
+      doc => {
+        patients.push(doc.data());
+      }
+    )
+    this.setState({ patients })
+  }
+  onPressPatient = (row) => {
+    this.props.navigation.navigate("Patient", { patient: row })
+  }
   render() {
     return (
       <Container style={styles.container}>
         <FlatList 
-          data={ data }
-          renderItem = { (row) => <PatientItem item={row.item} /> }
+          data={ this.state.patients }
+          keyExtractor = {(item, index) => item.id = index.toString()}
+          renderItem = { (row) => <PatientItem  onPress={ () => this.onPressPatient(row) } item={row.item} /> }
         />
         <Fab 
           position='bottomRight' 
           style={{ backgroundColor: '#32ADF5' }} 
-          onPress={() => this.props.navigation.navigate('AddPatient') }
+          onPress={() => this.props.navigation.navigate("AddPatient") }
           >
           <Text>
             +
@@ -62,14 +83,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     padding: 20,
   },
   itemContainer: {
     borderBottomColor: 'rgb(233, 233, 233)',
     borderBottomWidth: 2,
-    paddingTop: 20
+    paddingTop: 20,
   },
   itemTitle: {
     color: '#32ADF5',
