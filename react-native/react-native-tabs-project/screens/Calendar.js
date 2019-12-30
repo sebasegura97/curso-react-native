@@ -40,9 +40,7 @@ class Calendar extends React.Component{
     this.setState({selected: e.dateString})
     let dayDates = [];
     let date = new Date(e.year, e.month-1, e.day, 0, 0, 0, 0)
-    console.log("e", e)
-    console.log(date)
-
+    // Retrieve day dates from firestore:
     let firestoreTimestamp = Firestore.Timestamp.fromDate(date)
     console.log('firestoreTimestamp', firestoreTimestamp)
     const dayDatesRef = firestore.collection("dates").where("date", "==", firestoreTimestamp)
@@ -55,9 +53,7 @@ class Calendar extends React.Component{
       .then(() => this.setState({dayDates}))
       .catch((err) => alert("Ha ocurrido un error :/", err))
   }
-  renderDay = (row) => {
-    
-  }
+
   render(){
     return(
       <Container>

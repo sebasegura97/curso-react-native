@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { Input, Icon, Button } from 'react-native-elements'
 import { Container, Content, DatePicker } from 'native-base'
 import Colors from '../../constants/Colors'
@@ -18,6 +18,7 @@ class AddPatient extends Component {
             dni: "",
             diagnosis: "",
             disabled: false,
+            keyboard: false
         }
 
     }
@@ -39,10 +40,12 @@ class AddPatient extends Component {
         
     }
     render() {
-        let { dateOfBirth, name, lastname, obraSocial, nroObraSocial, dni, disabled, diagnosis } = this.state
+        let { dateOfBirth, name, lastname, obraSocial, nroObraSocial, dni, disabled, diagnosis, keyboard } = this.state
         return (
             <Container style={styles.container}>
                     <Content>
+                        
+                        
                         <Input
                             leftIcon={{
                                 type: 'ionicon',
@@ -110,23 +113,26 @@ class AddPatient extends Component {
                             onChangeText={text => this.setState({ nroObraSocial: text })}
                             textContentType="creditCardNumber"
                         /> 
-                        <Input
-                            leftIcon={{
-                                type: 'ionicon',
-                                name: 'ios-wallet',
-                                size: 24,
-                                marginRight: 20,
-                                color: Colors.tabIconDefault
-                            }}
-                            label='Número de documento'
-                            labelStyle={styles.label}
-                            inputContainerStyle={styles.inputContainer}
-                            inputStyle={styles.input}
-                            containerStyle={styles.inputContentContainer}
-                            value={dni}
-                            onChangeText={text => this.setState({ dni: text })}
-                            textContentType="username"
-                        /> 
+                        <View>
+                            <Input
+                                leftIcon={{
+                                    type: 'ionicon',
+                                    name: 'ios-wallet',
+                                    size: 24,
+                                    marginRight: 20,
+                                    color: Colors.tabIconDefault
+                                }}
+                                label='Número de documento'
+                                labelStyle={styles.label}
+                                inputContainerStyle={styles.inputContainer}
+                                inputStyle={styles.input}
+                                containerStyle={styles.inputContentContainer}
+                                value={dni}
+                                onChangeText={text => this.setState({ dni: text })}
+                                textContentType="username"
+                                onFocus={ () => this.setState({keyboard: true}) }
+                            /> 
+                        </View>
                         <View style={styles.datePicker}>
                             <Text style={styles.label}> Fecha de nacimiento </Text>
                             <View style={styles.inputDatePicker}>
@@ -165,6 +171,7 @@ class AddPatient extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingTop: 20,
+        flex: 1
     },
     label: {
         fontWeight: "300",       
